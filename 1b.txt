@@ -1,0 +1,30 @@
+mysql> select * from Customer C natural join Orders O;
+
+mysql> select B.title,A.author_name,A.country from Book B inner join Author A on B.author_no=A.author_no;
+
+mysql> select C.cust_no,C.cust_fname from Customer C left join Orders O on C.cust_no=O.cust_no where O.order_no is NULL;
+
+mysql> select B.title,B.ISBN from Book B  left join Orders O on B.ISBN=O.ISBN where O.order_no is NULL;
+
+mysql> select C.cust_fname,O.order_no,B.title,B.author_no,B.pub_year from Orders O join Customer C on C.cust_no=O.cust_no join Book B on B.ISBN=O.ISBN and O.ISBN='1234';
+
+mysql> select C.cust_fname,C.cust_no,count(O.qty) from Customer C inner join Orders O on C.cust_no=O.cust_no group by C.cust_no;
+
+mysql> select C.cust_no,O.cust_no,B.ISBN from Customer C join Orders O on C.cust_no=O.cust_no join Book B on B.ISBN=O.ISBN where title like '%mysql%';
+
+mysql> select company from Customer where cust_no in (select cust_no from Orders where year(odate)=2015);
+
+//view :
+//create view
+mysql> create view ab_view as
+    -> select B.title,B.unit_price,B.pub_yea,A.author_no,A.country
+    -> from Author A
+    -> join Book B
+    -> on A.author_no=B.author_no;
+    
+//update view
+mysql> update ab_view set unit_price=450 where pub_yea=2002;
+
+//drop view
+mysql> drop view ab_view;
+

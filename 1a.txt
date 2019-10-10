@@ -1,0 +1,20 @@
+mysql> select * from Customer where (city="Pune" or city="Mumbai") and (cust_fname like 'p%' or cust_fname like 'h%');
+
+mysql> select distinct(city) from Customer;
+
+mysql> update Book set unit_price=1.05*unit_price where pub_year=2015;
+
+mysql> select author_name from Author where country='India' union select author_name from Author where country='Australia';
+
+mysql> select publisher_name from Publisher where year=2003 or year=2006;
+
+mysql> select title from Book where unit_price=(select max(unit_price) from Book);
+
+mysql> select title from Book where unit_price between 300 and 400;
+
+mysql> select title, unit_price ,pub_yea from Book order by pub_year;
+
+mysql> select title,author_no,publisher_no from Book where pub_year in (2000,2004,2006);
+
+mysql> delete from Customer where city='Pune';
+
